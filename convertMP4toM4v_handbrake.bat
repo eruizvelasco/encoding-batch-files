@@ -1,0 +1,1 @@
+FOR /F "tokens=*" %%G IN ('DIR /B /S *.mp4') DO "C:\Program Files\Handbrake\HandBrakeCLI" -i "%%G" -o "%%G.m4v" --preset="iPhone 4"
