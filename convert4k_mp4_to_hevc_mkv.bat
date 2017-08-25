@@ -22,7 +22,7 @@ GOTO :EOF
 IF NOT EXIST "%~d1%~pn1.%~x1" (
 	ECHO Re-encoding %1 > CON
 	REM ffmpeg -i %1 -codec copy -b:v 50M -b:a 50M "%~d1%~pn1.mkv"
-	ffmpeg -y -vsync 0 -hwaccel cuvid -c:v h264_cuvid -i %1 -c:a copy -c:v hevc_nvenc -b:v 12M -b:a 50M "%~d1%~pn1.mkv"
+	ffmpeg -y -vsync 0 -hwaccel cuvid -c:v h264_cuvid -i %1 -c:v hevc_nvenc -b:v 12M -profile:v main -preset slow -rc vbr_hq -rc-lookahead 32 -c:a copy -b:a 50M "%~d1%~pn1.mkv"
 	IF NOT errorlevel 1 (
 		IF NOT EXIST "%~d1\4K%~p1" (mkdir "%~d1\4K%~p1")
 		ECHO Moving file %1 to "%~d1\4K%~p1" > CON
